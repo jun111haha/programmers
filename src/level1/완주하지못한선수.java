@@ -14,17 +14,17 @@ public class 완주하지못한선수 {
 
     public static String solution(String[] participant, String[] completion) {
         String answer = "";
-        boolean flag = true;
 
         for(int i=0; i<participant.length; i++){
+            boolean check = true;
             for(int j=0; j<completion.length; j++){
                 if(participant[i].equals(completion[j])){
                     completion[j] = null;
-                    flag = false;
+                    check = false;
                     break;
                 }
             }
-            if(flag) {
+            if(check) {
                 answer += participant[i];
             }
         }
