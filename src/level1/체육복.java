@@ -16,6 +16,7 @@ public class 체육복 {
         Arrays.sort(lost);
         Arrays.sort(reserve);
 
+        //체육복을 가져온사람이 도난당한경우
         for(int i =0; i < lost.length; i++){
             for(int j=0; j<reserve.length; j++){
                 if(lost[i] == reserve[j]){
