@@ -3,34 +3,48 @@ package level1;
 
 import java.util.*;
 
+
+/*
+* getOrDefault(A,B)
+* A: 가져올값
+* B: default 값
+* 그후에 완주자 이름의 key로 하여 값을 1씩 감소시킨다. 값에 하나라도 있으면?
+* 완주하지 못한사람은 감소되지않음 1을 가지게된다.
+* */
 public class 완주하지못한선수 {
     public static void main(String[] args) {
 
-        String[] val1 = {"leo", "kiki", "eden"};
-        String[] val2 = {"eden", "kiki"};
+        String[] participant = {"mislav", "stanko", "mislav", "ana"};
+        String[] completion = {"stanko", "ana", "mislav"};
 
-        solution(val1, val2);
+        solution(participant, completion);
     }
 
-    //효율성 테스트에서 오류남
     public static String solution(String[] participant, String[] completion) {
         String answer = "";
 
-        for(int i=0; i<participant.length; i++){
-            boolean isCheck = true;
-            for(int j=0; j<completion.length; j++){
-                if(participant[i].equals(completion[j])){
-                    isCheck = false;
+        HashMap<String , Integer> map = new HashMap<>();
+
+        for(String name : participant)
+            map.put(name, map.getOrDefault(name, 0) + 1);
+
+        //완주자 기준으로 -1 씩 for 문
+            for(String name : completion)
+                map.put(name, map.get(name) - 1);
+                System.out.println(map);
+
+            //int 값이 하나라도 있으면 완주X
+            for(String key : map.keySet()){
+                if(map.get(key) > 0){
+                    answer = key;
+                    System.out.println(answer);
                     break;
                 }
             }
-            if(isCheck) {
-                answer += participant[i];
-            }
-        }
+
+
         return answer;
     }
-
 }
 
 
